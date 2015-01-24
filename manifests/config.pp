@@ -3,7 +3,9 @@ class telldus::config(
   $user           = $telldus::user,
   $group          = $telldus::group,
   $device_node    = $telldus::device_node,
-  $ignoreCtrlConf  = $telldus::ignoreCtrlConf
+  $ignoreCtrlConf = $telldus::ignoreCtrlConf,
+  $devices        = $telldus::devices,
+  $use_cron       = $telldus::use_cron
 ) {
 
   file { $conf_file:
@@ -12,5 +14,10 @@ class telldus::config(
     group => $group,
     mode => '0664',
     content => template("${module_name}/tellstick.conf.erb"),
+    notify => Class['telldus::service']
+  }
+
+  if ($use_cron) {
+    create_resources('telldus::cronjob', $devices)
   }
 }

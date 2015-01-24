@@ -6,7 +6,7 @@ ignoreControllerConfirmation = "<%= @ignoreCtrlConf %>"
 device {
   name = "<%= name%>"
 <% device.sort.each do |k,v| -%>
-<% if k != 'parameters' -%>
+<% if k != 'parameters' and k != 'stop' and k != 'start' -%>
   <%= k %> = "<%= v %>"
 <% end -%>
 <% end -%>
