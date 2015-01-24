@@ -1,0 +1,26 @@
+user = "<%= @user %>"
+group = "<%= @group %>"
+deviceNode = "<%= @device_node %>"
+ignoreControllerConfirmation = "<%= @ignoreCtrlConf %>"
+<% @devices.sort.each do |name,device| -%>
+device {
+  name = "<%= name%>"
+<% device.sort.each do |k,v| -%>
+<% if k != 'parameters' -%>
+  <%= k %> = "<%= v %>"
+<% end -%>
+<% end -%>
+  parameters {
+<% if !device['parameters'].nil? -%>
+<% device['parameters'].sort.each do |k,v| -%>
+    <%= k %> = "<%= v %>"
+<% end -%>
+<% end -%>
+  }
+}
+<% end -%>
+controller {
+  id = 1
+  type = 2
+  serial = "<%= @ctrl_serial %>"
+}
