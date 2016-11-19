@@ -15,7 +15,7 @@ class telldus::config(
   $fin_devices = $hiera_devices ? {
     undef   => $devices,
     ''      => $devices,
-    default => $fin_devices,
+    default => $hiera_devices,
   }
 
   file { $conf_file:
