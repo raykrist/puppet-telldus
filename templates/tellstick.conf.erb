@@ -2,7 +2,7 @@ user = "<%= @user %>"
 group = "<%= @group %>"
 deviceNode = "<%= @device_node %>"
 ignoreControllerConfirmation = "<%= @ignoreCtrlConf %>"
-<% @devices.sort.each do |name,device| -%>
+<% @fin_devices.sort.each do |name,device| -%>
 device {
   name = "<%= name%>"
 <% device.sort.each do |k,v| -%>

@@ -5,9 +5,18 @@ class telldus::config(
   $group          = $telldus::group,
   $device_node    = $telldus::device_node,
   $ignoreCtrlConf = $telldus::ignoreCtrlConf,
-  $devices        = $telldus::fin_devices,
+  $devices        = $telldus::devices,
   $use_cron       = $telldus::use_cron
 ) {
+
+  # Merge hashes from hiera
+  $hiera_devices = hiera_hash("${module_name}::devices", undef)
+
+  $fin_devices = $hiera_devices ? {
+    undef   => $devices,
+    ''      => $devices,
+    default => $fin_devices,
+  }
 
   file { $conf_file:
     ensure  => present,
