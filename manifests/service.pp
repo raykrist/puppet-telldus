@@ -1,3 +1,4 @@
+# telldus::service
 class telldus::service(
   $service  = $telldus::service,
   $status   = $telldus::service_status
