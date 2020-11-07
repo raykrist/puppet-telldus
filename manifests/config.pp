@@ -10,7 +10,7 @@ class telldus::config(
 ) {
 
   # Merge hashes from hiera
-  $hiera_devices = hiera_hash("${module_name}::devices", undef)
+  $hiera_devices = lookup("${module_name}::devices", Hash, 'deep', {})
 
   $fin_devices = $hiera_devices ? {
     undef   => $devices,
